@@ -60,8 +60,20 @@ class AttachmentTableViewController: UITableViewController {
         messageController.recipients = ["12345678", "723456547"]
         messageController.body = "Just sent the \(attachment) to your email. Please check!"
         
+        //Adding file attachment
+        let fileparts = attachment.components(separatedBy: ".")
+        let filename = fileparts[0]
+        let fileExtension = fileparts[1]
+        let filePath = Bundle.main.path(forResource: filename, ofType: fileExtension)
+        let fileUrl = URL.init(fileURLWithPath: filePath!)
+        
+        messageController.addAttachmentURL(fileUrl, withAlternateFilename: nil)
+        
         //Present message view controller on screen
         present(messageController, animated: true, completion: nil)
+        
+        //Open default SMS
+        //UIApplication.shared.open(URL(string: "sms:12312412412")!, options: [:], completionHandler: nil)
     }
     
 }
