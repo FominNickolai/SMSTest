@@ -46,7 +46,22 @@ class AttachmentTableViewController: UITableViewController {
     }
     
     func sendSMS(attachment: String) {
+        //Check if the device is capable of sending text message
+        guard MFMessageComposeViewController.canSendText() else {
+            let alertMessage = UIAlertController(title: "SMS Unavailable", message: "Your device is not capable of sending SMS.", preferredStyle: .alert)
+            alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alertMessage, animated: true, completion: nil)
+            return
+        }
         
+        //Prefill the SMS
+        let messageController = MFMessageComposeViewController()
+        messageController.messageComposeDelegate = self
+        messageController.recipients = ["12345678", "723456547"]
+        messageController.body = "Just sent the \(attachment) to your email. Please check!"
+        
+        //Present message view controller on screen
+        present(messageController, animated: true, completion: nil)
     }
     
 }
