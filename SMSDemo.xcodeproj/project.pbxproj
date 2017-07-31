@@ -68,11 +68,11 @@
 			children = (
 				F44247661DA5FE5600F3F437 /* Attachments */,
 				F44247541DA5FE1E00F3F437 /* AppDelegate.swift */,
+				F44247731DA5FF1100F3F437 /* AttachmentTableViewController.swift */,
 				F44247581DA5FE1E00F3F437 /* Main.storyboard */,
 				F442475B1DA5FE1E00F3F437 /* Assets.xcassets */,
 				F442475D1DA5FE1E00F3F437 /* LaunchScreen.storyboard */,
 				F44247601DA5FE1E00F3F437 /* Info.plist */,
-				F44247731DA5FF1100F3F437 /* AttachmentTableViewController.swift */,
 			);
 			path = SMSDemo;
 			sourceTree = "<group>";
@@ -331,6 +331,7 @@
 				F44247651DA5FE1E00F3F437 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

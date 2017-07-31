@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class AttachmentTableViewController: UITableViewController {
 
@@ -14,7 +15,7 @@ class AttachmentTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,6 +45,65 @@ class AttachmentTableViewController: UITableViewController {
         return cell
     }
     
-
-
+    func sendSMS(attachment: String) {
+        
+    }
+    
 }
+
+//MARK: UITableViewDelegate
+extension AttachmentTableViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedFile = filenames[indexPath.row]
+        sendSMS(attachment: selectedFile)
+    }
+}
+
+//MARK: MFMessageComposeViewControllerDelegate
+extension AttachmentTableViewController: MFMessageComposeViewControllerDelegate {
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        switch result {
+        case .cancelled:
+            print("SMS cancelled")
+        case .failed:
+            let alertMessage = UIAlertController(title: "Failure", message: "Failed to send the message", preferredStyle: .alert)
+            alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        case .sent:
+            print("SMS sent")
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
